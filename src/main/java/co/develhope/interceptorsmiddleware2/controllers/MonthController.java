@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class MonthController {
 
     @GetMapping
-    public Month getMonth(@RequestHeader(value = "monthNumber", required = true) Integer monthNumber) throws Exception {
-        if (monthNumber == null) {
-            throw new Exception("monthNumber header is missing");
-        }
-        return MonthInterceptor.getMonthByNumber(monthNumber);
+    public Month getMonth(@RequestAttribute("month") Month month) {
+        return month;
     }
+    
 }
